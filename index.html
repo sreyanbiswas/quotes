@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Loading</title>
+	<style>
+			body{
+				background-image: linear-gradient(to right,#8A2BE2,#ff5722);
+				margin-top : 50px !important;
+			}
+			#button{
+				border-radius: 1.5rem;
+				border:none;
+				width : 120px;
+				background: #ff9800;
+				font-weight:600;
+				color: #555;
+				margin-top: 200px;
+				margin-left: 600px;
+				padding : 10px; 
+			}
+			#button:hover{
+				background: #000;
+			}
+			#text{
+				color:#fff;
+				font-size: 40px;
+				margin-left: 530px;
+				margin-right: 200px;
+			}
+			@media only screen and (max-width: 768px){
+				body{
+					overflow-x: hidden;
+				}
+				#button{
+					margin-left: 130px;
+				}
+				#text{
+					margin-left: 115px;
+					margin-right: 50px;
+					font-size: 20px;
+				}
+}	
+	</style>
+</head>
+<body>
+	<button id="button">Get Quotes</button>
+	<br>
+	<br>
+	<div id="text">Kanye West quotes</div>
+	<script>
+		document.getElementById('button').addEventListener('click',loadtext);
+		function loadtext(){
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET','https://api.kanye.rest',true);
+			xhr.onload = function(){
+				if(this.status==200){
+					var s = JSON.parse(this.responseText);
+					document.getElementById('text').innerHTML=s.quote;
+				}
+			}
+			xhr.send();
+		}
+	</script>
+</body>
+</html>
