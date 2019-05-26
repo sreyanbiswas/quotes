@@ -58,7 +58,7 @@
 			xhr.onload = function(){
 				if(this.status==200){
 					var s = JSON.parse(this.responseText);
-					document.getElementById('text').innerHTML=s.quote;
+					document.getElementById('text').innerHTML='"'+s.quote+'"';
 				}
 			}
 			xhr.send();
